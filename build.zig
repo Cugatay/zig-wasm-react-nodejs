@@ -1,15 +1,20 @@
 const std = @import("std");
 
-pub fn build(b: *std.Build) void {
-    const target = b.standardTargetOptions(.{});
+const target: std.Target.Query = .{
+    .cpu_arch = .wasm32,
+    .os_tag = .freestanding,
+};
 
-    const optimize = b.standardOptimizeOption(.{});
-    // const optimize: std.builtin.OptimizeMode = .ReleaseSmall;
+pub fn build(b: *std.Build) void {
+    //~ const target = b.standardTargetOptions(.{});
+
+    //~ const optimize = b.standardOptimizeOption(.{});
+    const optimize: std.builtin.OptimizeMode = .ReleaseSmall;
 
     const lib = b.addStaticLibrary(.{
         .name = "zig-wasm",
         .root_source_file = b.path("src/root.zig"),
-        .target = target,
+        .target = b.resolveTargetQuery(target),
         .optimize = optimize,
     });
 
@@ -18,9 +23,12 @@ pub fn build(b: *std.Build) void {
     const exe = b.addExecutable(.{
         .name = "zig-wasm",
         .root_source_file = b.path("src/main.zig"),
-        .target = target,
+        .target = b.resolveTargetQuery(target),
         .optimize = optimize,
     });
+
+    exe.rdynamic = true;
+    exe.entry = .disabled;
 
     b.installArtifact(exe);
 
