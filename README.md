@@ -15,7 +15,7 @@ After cloning the repository, you can use `bun install`, `pnpm install` or anyth
 For me, the most important part of the project is building the Zig in a way that it produces a freestanding binary, with all the functions you want to export, and in a small size. So, finding the way to do these 3 things at the same time was a little hard, spent a day with Reddit and YouTube, but here is the shell command for building the binary:
 
 ```bash
-zig build-exe src/main.zig -target wasm32-freestanding -fno-entry --export=add -OReleaseSmall
+zig build-exe src/main.zig -target wasm32-freestanding -fno-entry -rdynamic -OReleaseSmall
 ```
 
 # Important Notes
