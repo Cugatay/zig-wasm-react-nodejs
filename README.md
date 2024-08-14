@@ -12,7 +12,7 @@ Note: Zig part of this project has been tested with Zig versions `0.13` and `0.1
 
 After cloning the repository, you can use `bun install`, `pnpm install` or anything you want, but I initially worked with bun, which is written in Zig btw, lets go Zig!
 
-For me, the most important part of the project is building the Zig in a way that it produces a freestanding binary, with all the functions you want to export, and in a small size. So, finding the way to do these 3 things at the same time was a little hard, spent a day with Reddit and YouTube, but with thanks to [@alberic89](https://github.com/alberic89), we have a build file that can generate a WASM binary with these specifications. You can look at [build.zig](https://github.com/Cugatay/zig-wasm-react-nodejs/blob/main/build.zig) file for documentation and details.
+For me, the most important part of the project is building the Zig in a way that it produces a freestanding binary, with all the functions you want to export, and in a small size. So, finding the way to do these 3 things at the same time was a little hard, spent a day with Reddit and YouTube, but thanks to [@alberic89](https://github.com/alberic89), we have a build file that can generate a WASM binary with these specifications. You can look at [build.zig](https://github.com/Cugatay/zig-wasm-react-nodejs/blob/main/build.zig) file for documentation and details.
 
 Now, to build a WASM binary, you just simply need to enter the build command on you shell. After that, your binary that's called `zig-wasm` will be generated in `/zig-out/bin` directory. To use it in React, you have to move it as `/react/public/main.wasm`
 
