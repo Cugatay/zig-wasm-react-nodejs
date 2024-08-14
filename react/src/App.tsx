@@ -27,9 +27,6 @@ function App() {
     });
   }, []);
 
-  console.log("ADDDDD");
-  console.log(WasmExports);
-  console.log(WasmExports?.add(5, 2));
   return (
     <div>
       {isLoading ? (
